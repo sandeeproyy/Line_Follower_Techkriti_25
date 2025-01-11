@@ -1,0 +1,100 @@
+FINAL WIRING DIAGRAM:
+
+Power Distribution (7.4V Li-Po Battery):
+
+CopyBattery (+) -> Switch -> LM7805 Input + Motor Driver VM
+LM7805 Output -> Arduino VIN
+Battery (-) -> Common Ground
+
+Arduino Nano Connections:
+
+CopyVIN   -> LM7805 Output
+GND   -> Common Ground
+D2    -> IR Array Sensor 1 (Leftmost)
+D3    -> IR Array Sensor 2
+D4    -> IR Array Sensor 3
+D5    -> IR Array Sensor 4 (Center)
+D6    -> IR Array Sensor 5
+D7    -> IR Array Sensor 6
+D8    -> IR Array Sensor 7 (Rightmost)
+D9    -> Front IR Obstacle Sensor
+D10   -> TB6612FNG PWMA
+D11   -> TB6612FNG AIN1
+D12   -> TB6612FNG AIN2
+D13   -> TB6612FNG PWMB
+A0    -> TB6612FNG BIN1
+A1    -> TB6612FNG BIN2
+A2    -> Right Motor Encoder
+A3    -> Left Motor Encoder
+A4    -> OLED SDA
+A5    -> OLED SCL
+5V    -> Common 5V rail
+GND   -> Common Ground
+
+TB6612FNG Motor Driver:
+
+CopyVM    -> Battery Positive (7.4V)
+VCC   -> Arduino 5V
+GND   -> Common Ground
+AIN1  -> Arduino D11
+AIN2  -> Arduino D12
+PWMA  -> Arduino D10
+BIN1  -> Arduino A0
+BIN2  -> Arduino A1
+PWMB  -> Arduino D13
+STBY  -> Arduino 5V
+AO1   -> Right Motor (+)
+AO2   -> Right Motor (-)
+BO1   -> Left Motor (+)
+BO2   -> Left Motor (-)
+
+Power Rails Distribution:
+
+Copy5V Rail connects to:
+- IR Array VCC
+- OLED VCC
+- Front IR Sensor VCC
+- Both Encoder VCCs
+- TB6612FNG VCC and STBY
+
+Ground Rail connects to:
+- All sensor GND pins
+- OLED GND
+- TB6612FNG GND
+- Arduino GND
+- Battery Negative
+Additional Components:
+Copy1. Decoupling Capacitors:
+   - 100μF across battery terminals
+   - 0.1μF near LM7805 input
+   - 10μF after LM7805 output
+
+2. Power Switch between battery and circuit
+
+3. LM7805 Voltage Regulator:
+   - IN  -> Battery Positive
+   - OUT -> Arduino VIN
+   - GND -> Common Ground
+Important Notes:
+
+Use thick wires (18-20 AWG) for:
+
+Battery connections
+Motor connections
+Main power distribution
+
+
+Use thinner wires (22-24 AWG) for:
+
+Signal connections
+Sensor connections
+I2C lines
+
+
+Keep signal wires away from motor wires to avoid interference
+Double-check all connections before powering on
+Test voltage levels at different points:
+
+Battery output: ~7.4V
+After regulator: 5V
+Arduino 5V pin: 5V
