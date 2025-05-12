@@ -1,4 +1,4 @@
-# Line_Follower_Bot_techkriti_25
+#LF bot 
 Let me explain how the algorithm works:
 
 Initialization Phase:
